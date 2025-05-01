@@ -21,7 +21,7 @@ MAX_ANG_SPEED = 1.5
 SPEED_SCALER = 1.5
 USE_PLANNER = False
 NUM_OBS_STACK = 1
-MODEL_PATH = 'sac_cnn_7'
+MODEL_PATH = 'sac_cnn_5'
 
 rospack = rospkg.RosPack()
 

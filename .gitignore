@@ -94,7 +94,5 @@ CATKIN_IGNORE
 *out*.txt
 *.zip
 !**/plugins/*.so
-src/**/models/*
-!src/**/models/sac_cnn_7/
 *.sif
 .archive/*
