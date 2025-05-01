@@ -1,0 +1,34 @@
+Bootstrap: docker
+From: ros:melodic
+
+%setup
+    mkdir -p ${SINGULARITY_ROOTFS}/catkin_ws
+
+%files
+    . /catkin_ws
+
+%post -c /bin/bash
+    apt-get update && apt-get install -y \
+    python3-pip \
+    python3-catkin-tools \
+    && rm -rf /var/lib/apt/lists/
+
+    python3 -m pip install --no-cache-dir --upgrade pip
+    python3 -m pip install --no-cache-dir defusedxml rospkg netifaces numpy
+
+    apt-get update && apt-get install -y \
+    ros-melodic-jackal-simulator \
+    ros-melodic-jackal-desktop \
+    ros-melodic-jackal-navigation \
+    ros-melodic-gazebo-plugins \
+    ros-melodic-cartographer \
+    ros-melodic-cartographer-ros \
+    && rm -rf /var/lib/apt/lists/
+
+    pip3 install --no-cache-dir -r /catkin_ws/requirements.txt
+    
+    cd /catkin_ws
+    source /opt/ros/${ROS_DISTRO}/setup.bash
+    catkin build
+
+%environment

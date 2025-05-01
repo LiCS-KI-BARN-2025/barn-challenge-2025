@@ -1,0 +1,36 @@
+<launch>
+  <!-- Define arguments that can be passed to the launch file -->
+  <arg name="freq" default="20" />
+  <arg name="slam" default="true" />
+  <arg name="goal_x"/>
+  <arg name="goal_y"/>
+
+  <group if="$(arg slam)">
+    <!-- Launch slam nodes -->
+    <node name="cartographer_node" pkg="cartographer_ros"
+        type="cartographer_node" args="
+            -configuration_directory
+                $(find cnn_rl)/config
+            -configuration_basename cartographer.lua"
+        output="screen">
+      <remap from="scan" to="front/scan" />
+      <remap from="odom" to="odometry/filtered" />
+    </node>
+
+    <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+      type="cartographer_occupancy_grid_node" args="-resolution 0.05" />
+  </group>
+
+  <node pkg="jackal_helper" type="transform_listener_node" name="transform_listener_node" output="screen">
+  </node>
+
+  <!-- Launch planner node -->
+  <node pkg="cnn_rl" type="planner_node.py" name="planner_node" output="screen">
+    <param name="freq" value="$(arg freq)" />
+    <param name="slam" value="$(arg slam)" />
+    <param name="goal_x" value="$(arg goal_x)" />
+    <param name="goal_y" value="$(arg goal_y)" />
+  </node>
+
+
+</launch>

@@ -1,0 +1,5 @@
+--find-links https://download.pytorch.org/whl/torch_stable.html
+
+torch==1.10.2+cpu
+typing-extensions~=4.1.1
+filterpy~=1.4.5
