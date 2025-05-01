@@ -61,7 +61,8 @@ Navigate to the folder of this repo. Below is the example to run LiCS-KI algorit
 
 **LiCS-KI**\
 Laboratory for information and Control Systems - KI branch [[Homepage](https://lics.kaist.ac.kr)]
+Korea Advanced Institute of Science and Technology (KAIST)
 - Joshua Julian Damanik
 - Chala Adane Deresa
-- Imliki Wajih
+- Wajih Imliki
 - Sujeong Park
